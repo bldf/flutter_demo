@@ -1,75 +1,140 @@
-import 'package:flutter/material.dart';
-import 'package:english_words/english_words.dart';
+import "package:flutter/material.dart";
+//import 'package:qrscan/qrscan.dart' as scanner;
 
-void main() => runApp(new MyApp());
+import 'AlignWidget.dart';
+import 'Button.dart';
+//import 'FlexPage.dart';
+//import 'RowColumn.dart';
+import 'PaddingWidget.dart';
+import 'StackPositioned.dart';
+import 'WrapFlow.dart';
 
-class MyApp extends StatelessWidget {
+void main() => runApp(new App());
+
+class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-//    final wordPair = new WordPair.random() ;
+    // TODO: implement build
     return new MaterialApp(
-      title: 'Welcome to Flutter',
-        home: new Scaffold(
-        appBar: new AppBar(
-          title: new Text('Flutter  demo 初体验'),
-        ),
-        body: new Center(
-          //child: new Text(wordPair.asPascalCase),
-          child: new RandomWords(),
-        ),
+      title: "项目001",
+      home: new MyApp(title: "我的第一个fluterdemo"),
+      routes: {
+//        "RowColumn":(context){
+//            return RowColumn() ;
+//        },
+//        "FlexPage":(context){
+//          return new FlexPage();
+//        },
+        "WrapFlow":(context){
+          return new WrapFlow() ;
+        },
+        "StackPositioned":(constext){
+          return StackPositioned() ;
+        },
+        "AlignWidget":(context){
+          return AlignWidget();
+        },
+        "PaddingWidget":(context){
+          return PaddingWidget() ;
+        }
+
+      },
+      theme: new ThemeData(
+        primarySwatch: Colors.blue
       ),
     );
   }
+
 }
 
+class MyApp extends StatefulWidget {
+ final  String  title ;
 
-class RandomWords extends StatefulWidget {
+ MyApp({Key key,@required this.title}) : super(key: key);
   @override
-  State<StatefulWidget> createState() {
+  _MyApp createState() {
     // TODO: implement createState
-    return new RandomWordsState();
+    return new _MyApp();
   }
+
 }
-class RandomWordsState extends State<RandomWords>{
-  final _suggestions = <WordPair>[] ;
-  final _biggerFont = const TextStyle(fontSize: 18.0) ;
+
+class _MyApp extends State<MyApp> {
+  int _counter = 0;
+
+  String _scanText = '' ;
+  _incrementCounter() {
+    setState(() {
+      _counter ++;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    final wordPair = new WordPair.random();
-    return new Text(wordPair.asPascalCase);
-  }
-
-
-  Widget _buildSuggestions(){
-
-    return new ListView.builder(
-      padding: const EdgeInsets.all(16),
-      itemBuilder: (context, i ){
-        // 在每一列之前，添加一个1像素高的分隔线widget
-          if(i.isOdd) return new Divider() ;
-          final index = i ~/2 ;
-
-          // 如果是建议列表中的最后一个单词对
-          if(index >= _suggestions.length){
-            // 接着在添加10个单词对添加到返回列表
-
-            _suggestions.addAll(generateWordPairs().take(10)) ;
-          }
-          return null ;
-//        return _bu
-      },
-      );
-  }
-
-
-  Widget _buildRow(WordPair pair){
-
-      return new ListTile(
-        title: new Text(
-            pair.asPascalCase,
-            style:_biggerFont),
-      );
-
+    // TODO: implement build
+    return  new Scaffold(
+      appBar: new AppBar(
+        title: new Text(widget.title),
+      ),
+      floatingActionButton: new FlatButton(onPressed: (){
+        _incrementCounter();
+      }, child: new Icon(Icons.add)),
+      body: new Center(
+        child: new Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            new Text('点击下边的数字会变'),
+            new Text("$_counter"),
+            new Text('扫描到的值是[$_scanText]'),
+            RaisedButton(
+              child: Text("打开扫描"),
+              onPressed: () async{
+//                String barcode = await scanner.scan();
+//                setState(() {
+//                  _scanText = barcode ;
+//                });
+              },
+            ),
+            Button(
+              title: "线性布局，Row,column",
+              onPressed: (){
+             //   Navigator.pushNamed(context, "RowColumn",arguments: "线性布局，Row,column");
+              },
+            ),
+            Button(
+              title: "Flex布局",
+              onPressed: (){
+              //  Navigator.pushNamed(context, "FlexPage",arguments: "Flex布局页面");
+              },
+            ),
+            Button(
+              title: "流式布局",
+              onPressed: (){
+                Navigator.pushNamed(context, "WrapFlow",arguments: "流式布局");
+              },
+            ),
+            Button(
+              title: "StackPositioned",
+              onPressed: (){
+                Navigator.pushNamed(context, "StackPositioned",arguments: "StackPositioned");
+              },
+            ),
+            Button(
+              title: "Align 相对定位",
+              onPressed: (){
+                Navigator.pushNamed(context, "AlignWidget",arguments: "Align 相对定位");
+              },
+            ),
+            Button(
+              title: "PaddingWidget",
+              onPressed: (){
+                Navigator.pushNamed(context, "PaddingWidget",arguments: "PaddingWidget") ;
+              },
+            )
+          ],
+        ),
+      ),
+    );
   }
 
 }
