@@ -6,8 +6,12 @@ import 'Button.dart';
 //import 'FlexPage.dart';
 //import 'RowColumn.dart';
 import 'ConstrainedBoxWidget.dart';
+import 'CustomScrollViewTestRoute.dart';
+import 'InfiniteGridViewInfiniteGridView.dart';
+import 'InfiniteListViewRouter.dart';
 import 'ListViewRouter.dart';
 import 'PaddingWidget.dart';
+import 'PageViewRouter.dart';
 import 'ScaffoldRouter.dart';
 import 'StackPositioned.dart';
 import 'WrapFlow.dart';
@@ -44,7 +48,12 @@ class App extends StatelessWidget {
           return ConstrainedBoxWidget();
         },
         "ScaffoldRouter":(context)=>ScaffoldRouter(),
-        "ListViewRouter":(context)=>ListViewRouter()
+        "ListViewRouter":(context)=>ListViewRouter(),
+        "PageViewRouter":(context)=>PageV() ,
+        "InfiniteListViewRouter":(context)=>InfiniteListViewRouter(),
+        "InfiniteGridView":(context)=>InfiniteGridView(),
+        "CustomScrollViewTestRoute":(context)=>CustomScrollViewTestRoute(),
+
       },
       theme: new ThemeData(
         primarySwatch: Colors.blue
@@ -157,7 +166,32 @@ class _MyApp extends State<MyApp> {
                     onPressed: (){
                       Navigator.pushNamed(context, "ListViewRouter",arguments: "ListViewRouter页面") ;
                     },
+                  ),
+                  Button(
+                    title: "PageViewRouter",
+                    onPressed: (){
+                      Navigator.pushNamed(context, "PageViewRouter");
+                    },
+                  ),
+                  Button(
+                  title: "InfiniteListviewRouter",
+                    onPressed: (){
+                       Navigator.pushNamed(context, "InfiniteListViewRouter",arguments: "InfiniteListViewRouter") ;
+                    },
+                  ),
+                  Button(
+                    title: "InfiniteGridView",
+                    onPressed: (){
+                      Navigator.pushNamed(context, "InfiniteGridView",arguments: "InfiniteGridView") ;
+                    },
+                  ),
+                  Button(
+                    title: "CustomScrollViewTestRoute",
+                    onPressed: (){
+                      Navigator.pushNamed(context, "CustomScrollViewTestRoute",arguments: "CustomScrollViewTestRoute") ;
+                    },
                   )
+
                 ],
               ),
             ),
