@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import 'package:flutter_app/ShareDataWidget.dart';
 //import 'package:qrscan/qrscan.dart' as scanner;
 
 import 'AlignWidget.dart';
@@ -32,171 +33,181 @@ class App extends StatelessWidget {
 //        "FlexPage":(context){
 //          return new FlexPage();
 //        },
-        "WrapFlow":(context){
-          return new WrapFlow() ;
+        "WrapFlow": (context) {
+          return new WrapFlow();
         },
-        "StackPositioned":(constext){
-          return StackPositioned() ;
+        "StackPositioned": (constext) {
+          return StackPositioned();
         },
-        "AlignWidget":(context){
+        "AlignWidget": (context) {
           return AlignWidget();
         },
-        "PaddingWidget":(context){
-          return PaddingWidget() ;
+        "PaddingWidget": (context) {
+          return PaddingWidget();
         },
-        "ConstrainedBoxWidget":(context){
+        "ConstrainedBoxWidget": (context) {
           return ConstrainedBoxWidget();
         },
-        "ScaffoldRouter":(context)=>ScaffoldRouter(),
-        "ListViewRouter":(context)=>ListViewRouter(),
-        "PageViewRouter":(context)=>PageV() ,
-        "InfiniteListViewRouter":(context)=>InfiniteListViewRouter(),
-        "InfiniteGridView":(context)=>InfiniteGridView(),
-        "CustomScrollViewTestRoute":(context)=>CustomScrollViewTestRoute(),
-
+        "ScaffoldRouter": (context) => ScaffoldRouter(),
+        "ListViewRouter": (context) => ListViewRouter(),
+        "PageViewRouter": (context) => PageV(),
+        "InfiniteListViewRouter": (context) => InfiniteListViewRouter(),
+        "InfiniteGridView": (context) => InfiniteGridView(),
+        "CustomScrollViewTestRoute": (context) => CustomScrollViewTestRoute(),
+        "InheritedWidgetTestRouter": (context) => InheritedWidgetTestRouter(),
       },
-      theme: new ThemeData(
-        primarySwatch: Colors.blue
-      ),
+      theme: new ThemeData(primarySwatch: Colors.blue),
     );
   }
-
 }
 
 class MyApp extends StatefulWidget {
- final  String  title ;
+  final String title;
 
- MyApp({Key key,@required this.title}) : super(key: key);
+  MyApp({Key key, @required this.title}) : super(key: key);
   @override
   _MyApp createState() {
-    // TODO: implement createState
     return new _MyApp();
   }
-
 }
 
 class _MyApp extends State<MyApp> {
   int _counter = 0;
 
-  String _scanText = '' ;
+  String _scanText = '';
   _incrementCounter() {
     setState(() {
-      _counter ++;
+      _counter++;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return  new Scaffold(
+    return new Scaffold(
       appBar: new AppBar(
         title: new Text(widget.title),
       ),
-      floatingActionButton: new FlatButton(onPressed: (){
-        _incrementCounter();
-      }, child: new Icon(Icons.add)),
+      floatingActionButton: new FlatButton(
+          onPressed: () {
+            _incrementCounter();
+          },
+          child: new Icon(Icons.add)),
       body: Scrollbar(
-          child:SingleChildScrollView(
-            child:  Center(
-              child: new Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  new Text('点击下边的数字会变'),
-                  new Text("$_counter"),
-                  new Text('扫描到的值是[$_scanText]'),
-                  RaisedButton(
-                    child: Text("打开扫描"),
-                    onPressed: () async{
+          child: SingleChildScrollView(
+        child: Center(
+          child: new Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              new Text('点击下边的数字会变'),
+              new Text("$_counter"),
+              new Text('扫描到的值是[$_scanText]'),
+              RaisedButton(
+                child: Text("打开扫描"),
+                onPressed: () async {
 //                String barcode = await scanner.scan();
 //                setState(() {
 //                  _scanText = barcode ;
 //                });
-                    },
-                  ),
-                  Button(
-                    title: "线性布局，Row,column",
-                    onPressed: (){
-                      //   Navigator.pushNamed(context, "RowColumn",arguments: "线性布局，Row,column");
-                    },
-                  ),
-                  Button(
-                    title: "Flex布局",
-                    onPressed: (){
-                      //  Navigator.pushNamed(context, "FlexPage",arguments: "Flex布局页面");
-                    },
-                  ),
-                  Button(
-                    title: "流式布局",
-                    onPressed: (){
-                      Navigator.pushNamed(context, "WrapFlow",arguments: "流式布局");
-                    },
-                  ),
-                  Button(
-                    title: "StackPositioned",
-                    onPressed: (){
-                      Navigator.pushNamed(context, "StackPositioned",arguments: "StackPositioned");
-                    },
-                  ),
-                  Button(
-                    title: "Align 相对定位",
-                    onPressed: (){
-                      Navigator.pushNamed(context, "AlignWidget",arguments: "Align 相对定位");
-                    },
-                  ),
-                  Button(
-                    title: "PaddingWidget",
-                    onPressed: (){
-                      Navigator.pushNamed(context, "PaddingWidget",arguments: "PaddingWidget") ;
-                    },
-                  ),
-                  Button(
-                    title: "ConstrainedBoxWidget",
-                    onPressed: (){
-                      Navigator.pushNamed(context, "ConstrainedBoxWidget",arguments: "ConstrainedBoxWidget") ;
-                    },
-                  ),
-                  Button(
-                    title: "ScaffoldRouter",
-                    onPressed: (){
-                      Navigator.pushNamed(context, "ScaffoldRouter",arguments: "ScaffoldRouter") ;
-                    },
-                  ),
-                  Button(
-                    title: "ListViewRouter",
-                    onPressed: (){
-                      Navigator.pushNamed(context, "ListViewRouter",arguments: "ListViewRouter页面") ;
-                    },
-                  ),
-                  Button(
-                    title: "PageViewRouter",
-                    onPressed: (){
-                      Navigator.pushNamed(context, "PageViewRouter");
-                    },
-                  ),
-                  Button(
-                  title: "InfiniteListviewRouter",
-                    onPressed: (){
-                       Navigator.pushNamed(context, "InfiniteListViewRouter",arguments: "InfiniteListViewRouter") ;
-                    },
-                  ),
-                  Button(
-                    title: "InfiniteGridView",
-                    onPressed: (){
-                      Navigator.pushNamed(context, "InfiniteGridView",arguments: "InfiniteGridView") ;
-                    },
-                  ),
-                  Button(
-                    title: "CustomScrollViewTestRoute",
-                    onPressed: (){
-                      Navigator.pushNamed(context, "CustomScrollViewTestRoute",arguments: "CustomScrollViewTestRoute") ;
-                    },
-                  )
-
-                ],
+                },
               ),
-            ),
-          )
-      ),
+              Button(
+                title: "线性布局，Row,column",
+                onPressed: () {
+                  //   Navigator.pushNamed(context, "RowColumn",arguments: "线性布局，Row,column");
+                },
+              ),
+              Button(
+                title: "Flex布局",
+                onPressed: () {
+                  //  Navigator.pushNamed(context, "FlexPage",arguments: "Flex布局页面");
+                },
+              ),
+              Button(
+                title: "流式布局",
+                onPressed: () {
+                  Navigator.pushNamed(context, "WrapFlow", arguments: "流式布局");
+                },
+              ),
+              Button(
+                title: "StackPositioned",
+                onPressed: () {
+                  Navigator.pushNamed(context, "StackPositioned",
+                      arguments: "StackPositioned");
+                },
+              ),
+              Button(
+                title: "Align 相对定位",
+                onPressed: () {
+                  Navigator.pushNamed(context, "AlignWidget",
+                      arguments: "Align 相对定位");
+                },
+              ),
+              Button(
+                title: "PaddingWidget",
+                onPressed: () {
+                  Navigator.pushNamed(context, "PaddingWidget",
+                      arguments: "PaddingWidget");
+                },
+              ),
+              Button(
+                title: "ConstrainedBoxWidget",
+                onPressed: () {
+                  Navigator.pushNamed(context, "ConstrainedBoxWidget",
+                      arguments: "ConstrainedBoxWidget");
+                },
+              ),
+              Button(
+                title: "ScaffoldRouter",
+                onPressed: () {
+                  Navigator.pushNamed(context, "ScaffoldRouter",
+                      arguments: "ScaffoldRouter");
+                },
+              ),
+              Button(
+                title: "ListViewRouter",
+                onPressed: () {
+                  Navigator.pushNamed(context, "ListViewRouter",
+                      arguments: "ListViewRouter页面");
+                },
+              ),
+              Button(
+                title: "PageViewRouter",
+                onPressed: () {
+                  Navigator.pushNamed(context, "PageViewRouter");
+                },
+              ),
+              Button(
+                title: "InfiniteListviewRouter",
+                onPressed: () {
+                  Navigator.pushNamed(context, "InfiniteListViewRouter",
+                      arguments: "InfiniteListViewRouter");
+                },
+              ),
+              Button(
+                title: "InfiniteGridView",
+                onPressed: () {
+                  Navigator.pushNamed(context, "InfiniteGridView",
+                      arguments: "InfiniteGridView");
+                },
+              ),
+              Button(
+                title: "CustomScrollViewTestRoute",
+                onPressed: () {
+                  Navigator.pushNamed(context, "CustomScrollViewTestRoute",
+                      arguments: "CustomScrollViewTestRoute");
+                },
+              ),
+              Button(
+                title: "InheritedWidgetTestRouter",
+                onPressed: () {
+                  Navigator.pushNamed(context, "InheritedWidgetTestRouter",arguments: "InheritedWidgetTestRouter") ;
+                },
+              )
+            ],
+          ),
+        ),
+      )),
     );
   }
 }
