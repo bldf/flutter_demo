@@ -1,5 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:flutter_app/ShareDataWidget.dart';
+import 'package:flutter_app/components/ImageWidget.dart';
+import 'package:flutter_app/components/TextWidget.dart';
 //import 'package:qrscan/qrscan.dart' as scanner;
 
 import 'AlignWidget.dart';
@@ -55,6 +57,8 @@ class App extends StatelessWidget {
         "InfiniteGridView": (context) => InfiniteGridView(),
         "CustomScrollViewTestRoute": (context) => CustomScrollViewTestRoute(),
         "InheritedWidgetTestRouter": (context) => InheritedWidgetTestRouter(),
+        "TextWidget": (context) => TextWidget(),
+        "ImageWidget": (context) => ImageWidget()
       },
       theme: new ThemeData(primarySwatch: Colors.blue),
     );
@@ -201,7 +205,22 @@ class _MyApp extends State<MyApp> {
               Button(
                 title: "InheritedWidgetTestRouter",
                 onPressed: () {
-                  Navigator.pushNamed(context, "InheritedWidgetTestRouter",arguments: "InheritedWidgetTestRouter") ;
+                  Navigator.pushNamed(context, "InheritedWidgetTestRouter",
+                      arguments: "InheritedWidgetTestRouter");
+                },
+              ),
+              Button(
+                title: "textWidget",
+                onPressed: () {
+                  Navigator.pushNamed(context, "TextWidget",
+                      arguments: "TextWidget");
+                },
+              ),
+              Button(
+                title: "ImageWidget",
+                onPressed: () {
+                  Navigator.pushNamed(context, 'ImageWidget',
+                      arguments: "TextWidget");
                 },
               )
             ],
